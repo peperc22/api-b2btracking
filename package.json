@@ -3,8 +3,12 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun run --hot api/v1/server.ts"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/express": "^5.0.6"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -12,8 +16,10 @@
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.1006.0",
     "axios": "^1.13.6",
+    "bun-jwt": "^1.0.1",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "express-rate-limit": "^8.3.1"
+    "express-rate-limit": "^8.3.1",
+    "wialon-ts": "git+https://github.com/peperc22/wialon-ts.git"
   }
 }
