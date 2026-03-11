@@ -8,7 +8,7 @@ export const lastKnownPosController = async (
 ) => {
   const { ref } = req.user!;
 
-  const unit = req.params.unitName as string;
+  const unit = req.query.name as string;
   if (!unit) return res.status(400).json({ error: "unit name is required" });
 
   try {
