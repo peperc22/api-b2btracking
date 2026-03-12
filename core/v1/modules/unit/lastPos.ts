@@ -20,11 +20,7 @@ export const lastKnownPosition = async (
 
   return wialonSession(ref, async (wialon, sid, resourceId, user) => {
     const unitId = await wialon.unit.findUnitByName(sid, unitName);
-    const reportId = await wialon.report.findReportId(
-      sid,
-      user,
-      "webservice_lastPos_apiv2",
-    );
+    const reportId = await wialon.report.findReportId(sid, user, "api_lastPos");
 
     await wialon.report.execReport(
       resourceId,
@@ -59,11 +55,7 @@ export const groupLastKnownPosition = async (
 
   return wialonSession(ref, async (wialon, sid, resourceId, user) => {
     const { groupId } = await wialon.unit.getUnitGroup(sid, groupName);
-    const reportId = await wialon.report.findReportId(
-      sid,
-      user,
-      "webservice_lastPos_apiv2",
-    );
+    const reportId = await wialon.report.findReportId(sid, user, "api_lastPos");
 
     await wialon.report.execReport(
       resourceId,
