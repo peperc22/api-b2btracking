@@ -20,6 +20,6 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "express-rate-limit": "^8.3.1",
-    "wialon-ts": "git+https://github.com/peperc22/wialon-ts.git"
+    "wialon-ts": "git+https://github.com/peperc22/wialon-ts.git#dev"
   }
 }
