@@ -4,7 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run --hot api/v1/server.ts"
+    "dev": "bun run --hot api/v1/server.ts",
+    "build": "bun build ./api/v1/server.ts --outdir ./dist --sourcemap --target=bun",
+    "start": "bun run dist/server.js"
   },
   "devDependencies": {
     "@types/bun": "latest",
