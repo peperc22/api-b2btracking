@@ -1,0 +1,17 @@
+services:
+  api:
+    container_name: b2btrackingapi
+    build:
+      context: .
+      target: release
+    ports:
+      - "3000:3000"
+    environment:
+      AWS_REGION: "us-east-1"
+    volumes:
+      - ~/.aws:/root/.aws:ro
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always
+    #env_file: .env
+
