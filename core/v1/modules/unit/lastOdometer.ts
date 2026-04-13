@@ -1,4 +1,5 @@
 import { dayStartAndEnd } from "../../../utils/unixTime";
+import { cleanReportResult } from "../../helpers/wialonCleanReportResult";
 import { wialonSession } from "../../helpers/wialonSession";
 import type { IUnitOdometerData } from "../interfaces/unit.interface";
 
@@ -29,6 +30,8 @@ export const lastKnownOdometer = async (
     const reportData = await wialon.report.getData(100, sid);
     if (!reportData.length || !reportData[0]?.c?.length)
       throw new Error(`no odometer data found for unit: ${unitName}`);
+
+    await cleanReportResult(sid, wialon);
 
     const row = reportData[0].c;
     return {
@@ -76,6 +79,8 @@ export const groupLastKnownOdometer = async (
         odometer: row[2].t,
       };
     });
+
+    await cleanReportResult(sid, wialon);
 
     return { total: units.length, units };
   });
