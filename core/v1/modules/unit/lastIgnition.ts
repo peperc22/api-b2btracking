@@ -1,4 +1,5 @@
-import {dayStartAndEnd} from "../../../utils/unixTime.ts";
+import { dayStartAndEnd } from "../../../utils/unixTime.ts";
+import { cleanReportResult } from "../../helpers/wialonCleanReportResult.ts";
 import { wialonSession } from "../../helpers/wialonSession.ts";
 
 interface ILastIgnition {
@@ -37,6 +38,8 @@ export const lastKnownIgnition = async (
         if (!reportData.length)
             throw new Error(`no ignition data found for unit: ${unitName}`);
 
+        await cleanReportResult(sid, wialon);
+
         const data = reportData[0].r;
         const lastObject = data[data.length -1];
 
@@ -54,7 +57,7 @@ export const groupLastKnownIgnition = async (
     ref: string,
     groupName: string
 ) => {
-    if (!ref || !groupName) 
+    if (!ref || !groupName)
         throw new Error("ref and unit name are required");
     const { dayStart, dayEnd } = dayStartAndEnd();
 
@@ -99,6 +102,8 @@ export const groupLastKnownIgnition = async (
         if (!units.length)
             throw new Error(`no ignition data found for: ${groupName}`);
 
+        await cleanReportResult(sid, wialon);
+        
         return { total: units.length, units };
     });
 }

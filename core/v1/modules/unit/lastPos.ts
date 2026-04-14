@@ -2,6 +2,7 @@ import { getSecret } from "../../services/aws/secretsManager.ts";
 import { dayStartAndEnd } from "../../../utils/unixTime.ts";
 import { WialonApi } from "wialon-ts";
 import { wialonSession } from "../../helpers/wialonSession.ts";
+import { cleanReportResult } from "../../helpers/wialonCleanReportResult.ts";
 
 interface ILastPos {
   unit: string;
@@ -34,6 +35,8 @@ export const lastKnownPosition = async (
     const reportData = await wialon.report.getData(1000000, sid);
     if (!reportData.length || !reportData[0]?.c?.length)
       throw new Error("no report data for unit: ${unitName}");
+
+    await cleanReportResult(sid, wialon);
 
     const row = reportData[0].c;
     return {
@@ -81,6 +84,8 @@ export const groupLastKnownPosition = async (
         time: row[2].t,
       };
     });
+
+    await cleanReportResult(sid, wialon);
 
     return { total: units.length, units };
   });
