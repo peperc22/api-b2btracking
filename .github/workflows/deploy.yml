@@ -3,7 +3,6 @@ name: Build & Deploy
 on:
   push:
     branches:
-      - main
       - dev
   workflow_dispatch:
 
@@ -22,7 +21,7 @@ jobs:
           script: |
             cd /usr/src/app
 
-            git pull origin main
+            git pull origin dev
 
             docker compose build --no-cache
             docker compose up -d
