@@ -10,8 +10,6 @@ services:
       AWS_REGION: "us-east-1"
     volumes:
       - ~/.aws:/root/.aws:ro
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
     restart: always
     #env_file: .env
 
