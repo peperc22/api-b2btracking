@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /usr/src/app
+            cd /usr/src/app/api-b2btracking
 
             git pull origin dev
 
